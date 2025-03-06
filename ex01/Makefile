@@ -2,9 +2,12 @@ CC = g++
 
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 
-NAME = megaphone
+NAME = PhoneBook
 
-FILE = megaphone.cpp
+FILE = PhoneBook.cpp\
+		Contact.cpp\
+		Utils.cpp\
+		main.cpp
 
 all: $(NAME)
 
