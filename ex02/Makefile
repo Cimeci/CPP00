@@ -1,4 +1,4 @@
-CC = g++
+CPP = g++
 
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 
@@ -10,7 +10,7 @@ FILE = Account.cpp\
 all: $(NAME)
 
 $(NAME) :
-	$(CC) $(CFLAGS) -o $(NAME) $(FILE)
+	$(CPP) $(CFLAGS) -o $(NAME) $(FILE)
 
 fclean:
 	rm -rf $(NAME)
