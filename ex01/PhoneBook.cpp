@@ -6,7 +6,7 @@
 /*   By: inowak-- <inowak--@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 08:05:18 by inowak--          #+#    #+#             */
-/*   Updated: 2025/03/06 15:21:39 by inowak--         ###   ########.fr       */
+/*   Updated: 2025/03/08 18:09:59 by inowak--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,29 +18,46 @@ void PhoneBook::addContact()
 {
 	if (i == 8)
 		i = 0;
-
-	std::string first_name = getInput("First_name : ");
-	std::string last_name = getInput("Last_name : ");
-	std::string nickname = getInput("Nickname : ");
+	std::string first_name ;
+	std::string last_name ;
+	std::string nickname ;
 	std::string phone_number ;
+	while (1){
+		first_name = getInput("First_name : ");
+		if (!first_name.empty())
+			break;
+	}
+	while (1){
+		last_name = getInput("Last_name : ");
+		if (!last_name.empty())
+			break;
+	}
+	while (1){
+		nickname = getInput("Nickname : ");
+		if (!nickname.empty())
+			break;
+	}
 	while (1) {
 		phone_number = getInput("Phone_number : ");
-		int l = 0;
-		while (isspace(phone_number[l]))
-		l++;
-		size_t j = l;
-		if (phone_number[j] == '+')
-		j++;
-		size_t k = j;
-		while (j < phone_number.length()) {
-			if (isdigit(phone_number[j]) || isspace(phone_number[j]))
-				k++;
+		if (!phone_number.empty())
+		{
+			int l = 0;
+			while (isspace(phone_number[l]))
+			l++;
+			size_t j = l;
+			if (phone_number[j] == '+')
 			j++;
+			size_t k = j;
+			while (j < phone_number.length()) {
+				if (isdigit(phone_number[j]) || isspace(phone_number[j]))
+					k++;
+				j++;
+			}
+			if (k == j)
+				break ;
+			else
+				std::cout << RED <<"Error : " << ORANGE << "invalid input\n" << YELLOW << "Retry (STOP to stop the request)\n" << RESET;
 		}
-		if (k == j)
-			break ;
-		else
-			std::cout << RED <<"Error : " << ORANGE << "invalid input\n" << YELLOW << "Retry (STOP to stop the request)\n" << RESET;
 	}
 	std::string dark_secret = getInput("Dark_secret : ");
 	

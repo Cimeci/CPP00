@@ -1,17 +1,30 @@
-CC = g++
+CPP = g++
 
-CFLAGS = -Wall -Wextra -Werror -std=c++98
+CFLAGS = -g -Wall -Wextra -Werror -std=c++98
 
 NAME = megaphone
 
-FILE = megaphone.cpp
+OBJ_DIR = obj
+
+SRCS = megaphone.cpp
+
+OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.cpp=.o))
 
 all: $(NAME)
 
-$(NAME) :
-	$(CC) $(CFLAGS) -o $(NAME) $(FILE)
+$(NAME): $(OBJS)
+	$(CPP) $(CFLAGS) -o $(NAME) $(OBJS)
 
-fclean:
+$(OBJ_DIR)/%.o: %.cpp
+	@mkdir -p $(OBJ_DIR)
+	$(CPP) $(CFLAGS) -c $< -o $@
+
+clean:
+	rm -rf $(OBJ_DIR)
+
+fclean: clean
 	rm -rf $(NAME)
 
 re: fclean all
+
+.PHONY: all clean fclean re
